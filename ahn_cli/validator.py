@@ -87,6 +87,13 @@ def validate_bbox(bbox: list[float] | None) -> list[float] | None:
     return bbox
 
 
+def validate_exclusive_args(bbox: list[float] | None, cityname: str) -> None:
+    if bbox is not None and cityname is not None:
+        raise ValueError(
+            "Cannot specify both a bounding box and a city name."
+        )
+
+
 def validate_all(
     cfg: config.Config,
     output_path: str,
@@ -109,4 +116,5 @@ def validate_all(
     validate_epsg(epsg)
     validate_decimate(decimate)
     validate_bbox(bbox)
+    validate_exclusive_args(bbox, city_name)
     return True
