@@ -1,6 +1,15 @@
 
+
 # Changelog
-## [0.1.6] - 2024-03-05
+## [0.2.0] - 2024-05-04
+### Changed
+* feat: Add validation for exclusive arguments
+* feat: Update CLI options for city and bbox
+* chore: Update validator to return click's error message
+* fix: ahn classes
+
+# Changelog
+## [0.1.7] - 2024-03-05
 ### Changed
 * Make `city` parameter as optional when bbox is specified
 * Refactor and rename `pipeline` as it's not pipeline anymore
