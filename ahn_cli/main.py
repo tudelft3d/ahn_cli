@@ -9,8 +9,8 @@ from ahn_cli import config
 
 """
 Options:
- -c, --city <city_name>        Specify the name of the city to download point cloud data for.
- -o, --output <file>           Set the name of the output file where the data will be saved.
+ -c, --city <city_name>        Required (when bbox is None): Specify the name of the city to download point cloud data for.
+ -o, --output <file>           Required: Set the name of the output file where the data will be saved.
  -i, --include-class <class>   Include specific point cloud classes in the download.
                                Classes should be specified in a comma-separated list.
  -e, --exclude-class <class>   Exclude specific point cloud classes from the download.
@@ -20,7 +20,7 @@ Options:
  -cf, --clip-file <file>       Specify a file path to a clipping boundary file. The tool will
                                use this file to clip the point cloud data to a specific area.
  -e, --epsg <epsg>             Set the EPSG code for user's clip file.
- -b, --bbox <bbox>             Specify a bounding box to clip the point cloud data. It should be comma-separated list with minx,miny,maxx,maxy
+ -b, --bbox <bbox>             Required (when city is None): Specify a bounding box to clip the point cloud data. It should be comma-separated list with minx,miny,maxx,maxy
  -p, --preview                 Preview the point cloud data in a 3D viewer.
  -h, --help [category]         Display help information. Optionally, specify a category to get
                                more detailed help for a specific command.
@@ -29,11 +29,12 @@ Options:
 
 
 @click.command()
-@click.version_option(version="0.1.8", prog_name="ahn_cli")
+@click.version_option(version="0.2.0", prog_name="ahn_cli")
 @click.option(
     "-o",
     "--output",
     type=str,
+    required=True,
     help="Set the name of the output file where the data will be saved.",
 )
 @click.option(

@@ -1,25 +1,27 @@
 import os
 import geopandas as gpd
-
+from click import ClickException
 from ahn_cli import config
 
-AHN_CLASSES = [0, 1, 2, 6, 7, 4, 6]
+AHN_CLASSES = [0, 1, 2, 6, 9, 14, 26]
 
 
 def validate_output(output: str) -> str:
     if output is None:
-        raise ValueError("Output path is required.")
+        raise ClickException("Output path is required.")
     if not os.path.exists(os.path.dirname(output)):
-        raise ValueError("Output directory does not exist.")
+        raise ClickException("Output directory does not exist.")
     return output
 
 
 def validate_city(cityname: str, cityfile_path: str) -> str:
     if cityname is None:
-        raise ValueError("City name is required.")
+        raise ClickException("City name is required.")
     city_df = gpd.read_file(cityfile_path)
     if cityname.lower() not in city_df["name"].str.lower().tolist():
-        raise ValueError("City name not found in city list.")
+        raise ClickException(
+            "City name not found in city list. Please check if city name is correct."
+        )
     return cityname
 
 
@@ -28,7 +30,7 @@ def validate_include_classes(classes: list[int] | None) -> list[int] | None:
         return None
     for c in classes:
         if c not in AHN_CLASSES:
-            raise ValueError(f"Class {c} is not a valid AHN class.")
+            raise ClickException(f"Class {c} is not a valid AHN class.")
     return classes
 
 
@@ -37,7 +39,7 @@ def validate_exclude_classes(classes: list[int] | None) -> list[int] | None:
         return None
     for c in classes:
         if c not in AHN_CLASSES:
-            raise ValueError(f"Class {c} is not a valid AHN class.")
+            raise ClickException(f"Class {c} is not a valid AHN class.")
     return classes
 
 
@@ -48,7 +50,7 @@ def validate_include_exclude(
         return
     for c in include_classes:
         if c in exclude_classes:
-            raise ValueError(
+            raise ClickException(
                 f"Class {c} is in both include and exclude classes."
             )
 
@@ -57,7 +59,7 @@ def validate_clip_file(clip_file: str | None) -> str | None:
     if clip_file is None:
         return None
     if not os.path.exists(clip_file):
-        raise ValueError("Clip file does not exist.")
+        raise ClickException("Clip file does not exist.")
     return clip_file
 
 
@@ -65,7 +67,7 @@ def validate_epsg(epsg: int | None) -> int | None:
     if epsg is None:
         return None
     if epsg < 1000 or epsg > 999999:
-        raise ValueError("EPSG code is not valid.")
+        raise ClickException("EPSG code is not valid.")
     return epsg
 
 
@@ -73,7 +75,7 @@ def validate_decimate(decimate: int | None) -> int | None:
     if decimate is None:
         return None
     if decimate < 1:
-        raise ValueError("Decimate must be greater than 0.")
+        raise ClickException("Decimate must be greater than 0.")
     return decimate
 
 
@@ -81,10 +83,17 @@ def validate_bbox(bbox: list[float] | None) -> list[float] | None:
     if bbox is None:
         return None
     if len(bbox) != 4:
-        raise ValueError("Bounding box must have 4 coordinates.")
+        raise ClickException("Bounding box must have 4 coordinates.")
     if bbox[0] >= bbox[2] or bbox[1] >= bbox[3]:
-        raise ValueError("Bounding box coordinates are not valid.")
+        raise ClickException("Bounding box coordinates are not valid.")
     return bbox
+
+
+def validate_exclusive_args(bbox: list[float] | None, cityname: str) -> None:
+    if bbox is not None and cityname is not None:
+        raise ClickException(
+            "Cannot specify both a bounding box and a city name."
+        )
 
 
 def validate_all(
@@ -109,4 +118,5 @@ def validate_all(
     validate_epsg(epsg)
     validate_decimate(decimate)
     validate_bbox(bbox)
+    validate_exclusive_args(bbox, city_name)
     return True
