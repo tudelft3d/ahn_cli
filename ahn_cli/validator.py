@@ -3,7 +3,7 @@ import geopandas as gpd
 from click import ClickException
 from ahn_cli import config
 
-AHN_CLASSES = [0, 1, 2, 6, 7, 4, 6]
+AHN_CLASSES = [0, 1, 2, 6, 9, 14, 26]
 
 
 def validate_output(output: str) -> str:
