@@ -20,8 +20,6 @@ def polygon_to_raster(
     Returns:
         Tuple[np.ndarray, Affine]: A tuple containing the rasterized numpy array and the affine transformation matrix.
     """
-    # Implementation code here
-    pass
 
     bbox = polygon.bounds
     height = int((bbox[3] - bbox[1]) / resolution)

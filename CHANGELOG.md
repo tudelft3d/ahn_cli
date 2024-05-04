@@ -1,7 +1,7 @@
 
 
 # Changelog
-## [0.2.0] - 2024-05-04
+## [0.2.1] - 2024-05-04
 ### Changed
 * feat: Add validation for exclusive arguments
 * feat: Update CLI options for city and bbox

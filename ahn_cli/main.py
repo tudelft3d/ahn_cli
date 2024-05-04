@@ -29,7 +29,7 @@ Options:
 
 
 @click.command()
-@click.version_option(version="0.2.0", prog_name="ahn_cli")
+@click.version_option(version="0.2.1", prog_name="ahn_cli")
 @click.option(
     "-o",
     "--output",
