@@ -30,7 +30,7 @@ Options:
 
 
 @click.command()
-@click.version_option(version="0.3.3")
+@click.version_option(version="0.3.4")
 @click.option(
     "-o",
     "--output",

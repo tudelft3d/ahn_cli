@@ -1,6 +1,6 @@
 [project]
 name = "ahn_cli"
-version = "0.3.3"
+version = "0.3.4"
 description = "AHN CLI for downloading Dutch elevation point cloud data"
 authors = [{ name = "HideBa", email = "baba.papa1120.ba@gmail.com" }]
 license = { text = "MIT" }
