@@ -1,5 +1,3 @@
-from typing import Tuple
-
 import numpy as np
 from rasterio.features import rasterize
 from rasterio.transform import Affine, from_origin
@@ -9,7 +7,7 @@ from shapely import Polygon
 def polygon_to_raster(
     polygon: Polygon,
     resolution: float,
-) -> Tuple[np.ndarray, Affine]:
+) -> tuple[np.ndarray, Affine]:
     """
     Converts a polygon into a rasterized numpy array.
 

@@ -7,7 +7,7 @@ import rasterio
 from shapely import Polygon
 
 from ahn_cli.manipulator import rasterizer
-from ahn_cli.manipulator.transformer import tranform_polygon
+from ahn_cli.manipulator.transformer import transform_polygon
 
 
 class PntCHandler:
@@ -208,7 +208,7 @@ class PntCHandler:
         polygon = record.iloc[0].geometry
         crs = self.city_df.crs
         if crs is not None:
-            polygon = tranform_polygon(polygon, crs, "EPSG:28992")
+            polygon = transform_polygon(polygon, crs, "EPSG:28992")
         if polygon is None:
             raise ValueError("Failed to reproject polygon")
         return polygon
@@ -232,9 +232,9 @@ class PntCHandler:
         polygon = gdf[gdf.geometry.type == "Polygon"].iloc[0].geometry
         crs = gdf.crs
         if self.epsg is not None:
-            polygon = tranform_polygon(polygon, self.epsg, "EPSG:28992")
+            polygon = transform_polygon(polygon, self.epsg, "EPSG:28992")
         elif crs is not None:
-            polygon = tranform_polygon(polygon, crs, "EPSG:28992")
+            polygon = transform_polygon(polygon, crs, "EPSG:28992")
         if polygon is None:
             raise ValueError("Failed to reproject polygon")
         return polygon

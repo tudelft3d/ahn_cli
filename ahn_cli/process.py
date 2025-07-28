@@ -1,13 +1,14 @@
 import logging
 import os
 
-import numpy as np
-from tqdm import tqdm
-from ahn_cli.fetcher.request import Fetcher
-from ahn_cli.manipulator.ptc_handler import PntCHandler
-from ahn_cli.manipulator.preview import previewer
 import laspy
+import numpy as np
 from laspy.lasappender import LasAppender
+from tqdm import tqdm
+
+from ahn_cli.fetcher.request import Fetcher
+from ahn_cli.manipulator.preview import previewer
+from ahn_cli.manipulator.ptc_handler import PntCHandler
 
 
 def process(

@@ -31,8 +31,11 @@ jobs:
       - name: Linting
         run: make lint
 
-      - name: Type checking
-        run: make type
+      - name: Typos checking
+        run: make typos
+
+      - name: Format checking
+        run: make format-check
 
       - name: Testing
         run: make test

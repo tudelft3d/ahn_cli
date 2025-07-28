@@ -10,26 +10,30 @@ update:
 
 .PHONY: lint
 lint:
-	uv run flake8 $(PACKAGE_DIR)
+	uv run ruff check $(PACKAGE_DIR)
 
-.PHONY: type
-type:
-	uv run mypy $(PACKAGE_DIR)/**/*.py
+.PHONY: typos
+typos:
+	uv run typos
 
 .PHONY: format
 format:
-	uv run black $(PACKAGE_DIR)/**/*.py
+	uv run ruff format $(PACKAGE_DIR)
 
-.PHONY: sort
-sort:
-	uv run isort $(PACKAGE_DIR)/**/*.py
+.PHONY: format-check
+format-check:
+	uv run ruff format --check $(PACKAGE_DIR)
+
+.PHONY: fix
+fix:
+	uv run ruff check --fix $(PACKAGE_DIR)
 
 .PHONY: test
 test:
 	uv run pytest
 
 .PHONY: check
-check: lint type test format sort
+check: lint typos test format-check
 
 .PHONY: run
 run:
