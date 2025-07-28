@@ -29,6 +29,7 @@ dependencies = [
     { name = "requests" },
     { name = "shapely" },
     { name = "tqdm" },
+    { name = "typing-extensions" },
 ]
 
 [package.dev-dependencies]
@@ -48,6 +49,7 @@ requires-dist = [
     { name = "requests", specifier = ">=2.32.0" },
     { name = "shapely", specifier = ">=2.1.0" },
     { name = "tqdm", specifier = ">=4.67.0" },
+    { name = "typing-extensions", specifier = ">=4.14.1" },
 ]
 
 [package.metadata.requires-dev]
