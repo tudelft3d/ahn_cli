@@ -1,11 +1,12 @@
 from typing import cast
+
 import click
 from pyparsing import Any
-from ahn_cli.kwargs import CLIArgs
-from ahn_cli.validator import validate_all
-from ahn_cli.process import process
-from ahn_cli import config
 
+from ahn_cli import config
+from ahn_cli.kwargs import CLIArgs
+from ahn_cli.process import process
+from ahn_cli.validator import validate_all
 
 """
 Options:
@@ -48,14 +49,14 @@ Options:
     "--include-class",
     "include_class",
     type=str,
-    help="Include specific point cloud classes in the download. Classes should be specified in a comma-separated list. Here is a list of available classes. 0:Created,never classifed 1:Unclassified 2:Ground 6:Building 9:Water 14:High tension 26:Civil structure",
+    help="Include specific point cloud classes in the download. Classes should be specified in a comma-separated list. Here is a list of available classes. 0:Created,never classified 1:Unclassified 2:Ground 6:Building 9:Water 14:High tension 26:Civil structure",
 )
 @click.option(
     "-e",
     "--exclude-class",
     "exclude_class",
     type=str,
-    help="Exclude specific point cloud classes from the download. Classes should be specified in a comma-separated list.Here is a list of available classes. 0:Created,never classifed 1:Unclassified 2:Ground 6:Building 9:Water 14:High tension 26:Civil structure",
+    help="Exclude specific point cloud classes from the download. Classes should be specified in a comma-separated list.Here is a list of available classes. 0:Created,never classified 1:Unclassified 2:Ground 6:Building 9:Water 14:High tension 26:Civil structure",
 )
 @click.option(
     "-ncc",

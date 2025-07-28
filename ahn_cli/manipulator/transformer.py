@@ -4,7 +4,7 @@ from shapely.ops import transform
 
 
 # Memo: hope to support more types of geometry
-def tranform_polygon(
+def transform_polygon(
     geometry: shapely.Polygon, source_crs: str, target_crs: str
 ) -> shapely.Polygon | None:
     proj = pyproj.Transformer.from_crs(

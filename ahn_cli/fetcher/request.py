@@ -9,8 +9,10 @@ from urllib.parse import urlparse
 import requests
 from tqdm import tqdm
 
-from ahn_cli.fetcher.geotiles import (ahn_subunit_indicies_of_bbox,
-                                      ahn_subunit_indicies_of_city)
+from ahn_cli.fetcher.geotiles import (
+    ahn_subunit_indices_of_bbox,
+    ahn_subunit_indices_of_city,
+)
 
 
 class Fetcher:
@@ -109,9 +111,9 @@ class Fetcher:
             list[str]: A list of URLs for fetching AHN data.
         """
         tiles_indices = (
-            ahn_subunit_indicies_of_bbox(self.bbox)
+            ahn_subunit_indices_of_bbox(self.bbox)
             if self.bbox
-            else ahn_subunit_indicies_of_city(self.city_name)
+            else ahn_subunit_indices_of_city(self.city_name)
         )
         urls = []
         for tile_index in tiles_indices:

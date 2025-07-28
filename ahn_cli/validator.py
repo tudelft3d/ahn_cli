@@ -1,6 +1,8 @@
 import os
+
 import geopandas as gpd
 from click import ClickException
+
 from ahn_cli import config
 
 AHN_CLASSES = [0, 1, 2, 6, 9, 14, 26]

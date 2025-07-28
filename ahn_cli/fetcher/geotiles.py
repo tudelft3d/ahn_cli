@@ -15,8 +15,8 @@ def geotiles() -> gpd.GeoDataFrame:
     return ahn_tile_gdf
 
 
-def ahn_subunit_indicies_of_city(city_name: str) -> list[str]:
-    """Return a list of AHN tile indicies that intersect with the city's boundary."""  # noqa
+def ahn_subunit_indices_of_city(city_name: str) -> list[str]:
+    """Return a list of AHN tile indices that intersect with the city's boundary."""  # noqa
     city_poly = city_polygon(city_name)
     geotiles_tile_gdf = geotiles()
 
@@ -27,8 +27,8 @@ def ahn_subunit_indicies_of_city(city_name: str) -> list[str]:
     return tile_indices
 
 
-def ahn_subunit_indicies_of_bbox(bbox: list[float]) -> list[str]:
-    """Return a list of AHN tile indicies that intersect with the bbox."""  # noqa
+def ahn_subunit_indices_of_bbox(bbox: list[float]) -> list[str]:
+    """Return a list of AHN tile indices that intersect with the bbox."""  # noqa
     geotiles_tile_gdf = geotiles()
 
     transformer = Transformer.from_crs(

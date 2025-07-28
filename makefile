@@ -2,35 +2,39 @@ PACKAGE_DIR := ahn_cli
 
 .PHONY: install
 install:
-	poetry install
+	uv sync --dev
 
 .PHONY: update
 update:
-	poetry update
+	uv sync --upgrade
 
 .PHONY: lint
 lint:
-	poetry run flake8 $(PACKAGE_DIR)
+	uv run ruff check $(PACKAGE_DIR)
 
-.PHONY: type
-type:
-	poetry run mypy $(PACKAGE_DIR)/**/*.py
+.PHONY: typos
+typos:
+	uv run typos $(PACKAGE_DIR)/**/*.py
 
 .PHONY: format
 format:
-	poetry run black $(PACKAGE_DIR)/**/*.py
+	uv run ruff format $(PACKAGE_DIR)
 
-.PHONY: sort
-sort:
-	poetry run isort $(PACKAGE_DIR)/**/*.py
+.PHONY: format-check
+format-check:
+	uv run ruff format --check $(PACKAGE_DIR)
+
+.PHONY: fix
+fix:
+	uv run ruff check --fix $(PACKAGE_DIR)
 
 .PHONY: test
 test:
-	poetry run pytest
+	uv run pytest
 
 .PHONY: check
-check: lint type test	format sort
+check: lint typos test format-check
 
 .PHONY: run
 run:
-	poetry run ahn_cli $(ARGS)
+	uv run ahn_cli $(ARGS)

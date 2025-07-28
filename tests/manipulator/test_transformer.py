@@ -1,10 +1,10 @@
 import unittest
 from shapely.geometry import Polygon
-from ahn_cli.manipulator.transformer import tranform_polygon
+from ahn_cli.manipulator.transformer import transform_polygon
 
 
 class TestTransformer(unittest.TestCase):
-    def test_tranform_polygon(self) -> None:
+    def test_transform_polygon(self) -> None:
         # Define the input polygon
         source_polygon = Polygon(  # EPSG:4326
             [
@@ -25,7 +25,7 @@ class TestTransformer(unittest.TestCase):
             ]
         )
 
-        result: Polygon = tranform_polygon(source_polygon, "4326", "28992")
+        result: Polygon = transform_polygon(source_polygon, "4326", "28992")
 
         self.assertIsNotNone(result)
         self.assertEqual(

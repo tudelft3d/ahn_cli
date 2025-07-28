@@ -4,7 +4,7 @@ import unittest
 
 from ahn_cli.manipulator import rasterizer
 
-from ahn_cli.manipulator.transformer import tranform_polygon
+from ahn_cli.manipulator.transformer import transform_polygon
 
 
 TEST_DATA0 = "./tests/testdata/westervoort0_thinned.las"
@@ -24,7 +24,7 @@ class TestRasterize(unittest.TestCase):
         polygon = record.iloc[0].geometry
         crs = city_df.crs
         if crs is not None:
-            polygon = tranform_polygon(polygon, crs, "EPSG:28992")
+            polygon = transform_polygon(polygon, crs, "EPSG:28992")
         if polygon is None:
             raise ValueError("Failed to reproject polygon")
         rasterizer.polygon_to_raster(polygon, 50)
