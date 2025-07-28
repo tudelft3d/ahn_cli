@@ -14,7 +14,7 @@ lint:
 
 .PHONY: typos
 typos:
-	uv run typos
+	uv run typos $(PACKAGE_DIR)/**/*.py
 
 .PHONY: format
 format:
