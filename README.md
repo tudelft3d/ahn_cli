@@ -12,8 +12,14 @@ AHN CLI is a command-line interface tool designed for the effortless downloading
 
 Install AHN CLI using pip:
 
-```
+```bash
 pip install ahn_cli
+```
+
+Or with uv:
+
+```bash
+uv tool install ahn_cli
 ```
 
 ## Usage
